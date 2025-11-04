@@ -1,0 +1,522 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "TSRPC Open API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/Login/Login": {
+      "post": {
+        "tags": [
+          "Login"
+        ],
+        "operationId": "Login/Login",
+        "requestBody": {
+          "description": "Req<Login>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Login_PtlLogin_ReqLogin"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResLogin>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/Login_PtlLogin_ResLogin"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/Login/Regist": {
+      "post": {
+        "tags": [
+          "Login"
+        ],
+        "operationId": "Login/Regist",
+        "requestBody": {
+          "description": "Req<Regist>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Login_PtlRegist_ReqRegist"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResRegist>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/Login_PtlRegist_ResRegist"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/AddData": {
+      "post": {
+        "operationId": "AddData",
+        "requestBody": {
+          "description": "Req<AddData>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PtlAddData_ReqAddData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResAddData>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/PtlAddData_ResAddData"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/GetData": {
+      "post": {
+        "operationId": "GetData",
+        "requestBody": {
+          "description": "Req<GetData>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PtlGetData_ReqGetData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResGetData>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/PtlGetData_ResGetData"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Login_PtlLogin_ReqLogin": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/base_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "loginID": {
+                "type": "string"
+              },
+              "password": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "loginID",
+              "password"
+            ]
+          }
+        ]
+      },
+      "base_BaseRequest": {
+        "type": "object",
+        "properties": {}
+      },
+      "Login_PtlLogin_ResLogin": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/base_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "user": {
+                "$ref": "#/components/schemas/___entities_user_users"
+              },
+              "token": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "user",
+              "token"
+            ]
+          }
+        ]
+      },
+      "base_BaseResponse": {
+        "type": "object",
+        "properties": {}
+      },
+      "___entities_user_users": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "$ref": "#/components/schemas/?mongodb_ObjectId"
+          },
+          "firstName1": {
+            "type": "string"
+          },
+          "lastName1": {
+            "type": "string"
+          },
+          "firstName2": {
+            "type": "string"
+          },
+          "lastName2": {
+            "type": "string"
+          },
+          "birthday": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "mailAddress": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id",
+          "firstName1",
+          "lastName1",
+          "firstName2",
+          "lastName2",
+          "birthday",
+          "mailAddress",
+          "password"
+        ]
+      },
+      "Login_PtlRegist_ReqRegist": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/base_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "firstName1": {
+                "type": "string"
+              },
+              "lastName1": {
+                "type": "string"
+              },
+              "firstName2": {
+                "type": "string"
+              },
+              "lastName2": {
+                "type": "string"
+              },
+              "birthday": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "mailAddress": {
+                "type": "string"
+              },
+              "password": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "firstName1",
+              "lastName1",
+              "firstName2",
+              "lastName2",
+              "birthday",
+              "mailAddress",
+              "password"
+            ]
+          }
+        ]
+      },
+      "Login_PtlRegist_ResRegist": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/base_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ]
+      },
+      "MsgChat_MsgChat": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "content"
+        ]
+      },
+      "MsgTest_MsgTest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "age": {
+            "type": "number"
+          },
+          "gender": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "Male"
+                ]
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "Female"
+                ]
+              }
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "age",
+          "gender"
+        ]
+      },
+      "PtlAddData_ReqAddData": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "content"
+        ],
+        "description": "test AddData\r\nThis is a test interface for AddData"
+      },
+      "PtlAddData_ResAddData": {
+        "type": "object",
+        "properties": {
+          "time": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "time"
+        ]
+      },
+      "PtlGetData_ReqGetData": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/base_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ],
+        "description": "test GetData"
+      },
+      "PtlGetData_ResGetData": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/base_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "content": {
+                      "type": "string"
+                    },
+                    "time": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": [
+                    "content",
+                    "time"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "data"
+            ]
+          }
+        ]
+      },
+      "?bson_ObjectID": {
+        "type": "string"
+      },
+      "?bson_ObjectId": {
+        "type": "string"
+      },
+      "?mongodb_ObjectID": {
+        "type": "string"
+      },
+      "?mongodb_ObjectId": {
+        "type": "string"
+      }
+    },
+    "responses": {
+      "error": {
+        "description": "Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "title": "API 错误",
+              "description": "业务错误（ApiError）返回 HTTP 状态码 200，其它错误返回 HTTP 状态码 500",
+              "properties": {
+                "isSucc": {
+                  "type": "boolean",
+                  "enum": [
+                    false
+                  ],
+                  "default": false
+                },
+                "err": {
+                  "type": "object",
+                  "description": "TsrpcError",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "ApiError",
+                        "NetworkError",
+                        "ServerError",
+                        "ClientError"
+                      ]
+                    },
+                    "code": {
+                      "oneOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "integer"
+                        }
+                      ],
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "type"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
